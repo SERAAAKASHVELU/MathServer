@@ -1,5 +1,5 @@
 # Ex.03 Design a Website for Server Side Processing
-## Date:
+## Date:12.11.26
 
 ## AIM:
 To create a web page to calculate Churn Rate using server-side scripts.
@@ -42,13 +42,75 @@ Render the result to the HTML template.
 Publish the website in Localhost.
 
 ## PROGRAM:
+views.py
+```
+from django.shortcuts import render
 
+def calculate_churn_rate(request):
+    context = {}
+    
+    if request.method == "POST":
+        initial_str = request.POST.get("Initialcust", "0")
+        present_str = request.POST.get("Presentcust", "0")
+        
+        Initialcust = int(initial_str) if initial_str else 0
+        Presentcust = int(present_str) if present_str else 0
+        print("initial Customer:",Initialcust)
+        print("present Customer:",Presentcust)
+        
+        if Initialcust > 0:
+            churn_rate = ((Initialcust - Presentcust) / Initialcust) * 100
+        else:
+            churn_rate = 0
+       
+        print("Calculated Churn Rate:", round(churn_rate, 2), "%")
+            
+        context = {
+            "Initialcust": Initialcust,
+            "Presentcust": Presentcust,
+            "churn_rate": round(churn_rate, 2),
+        }
+            
+    return render(request, "Myapp/math.html", context)
 
+```
+urls.py
+```
+from django.contrib import admin
+from django.urls import path
+from Myapp import views
+
+urlpatterns=[
+    path('admin/', admin.site.urls),
+    path('',views.calculate_churn_rate,name="calculate_churn_rate")
+]
+
+```
+math.html
+<html>
+    <head>
+        <title>Churn_rate_calculator</title>
+    </head>
+    <body>
+        <h1 align="center">V.Sera aakash(26018101)</h1>
+        <form method="POST">
+         {%csrf_token%}
+        <label>Initial Customer</label>
+        <input type="number" name="Initialcust" value="{{Initialcust}}"><br><br>
+        <label>Present Customer</label>
+        <input type="number" name="Presentcust" value="{{Presentcust}}"><br><br>
+        <input type="submit" value="Calculate">
+    
+      <h3>Churn Rate: {{ churn_rate }}%</h3>  
+
+        </form>
+    </body>
+</html>
 ## OUTPUT - SERVER SIDE:
-
+![alt text](image-1.png)
 
 ## OUTPUT - WEBPAGE:
-
+![alt text](image.png)
 
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.
