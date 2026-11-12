@@ -107,7 +107,8 @@ math.html
     </body>
 </html>
 ## OUTPUT - SERVER SIDE:
-![alt text](image-1.png)
+<img width="1920" height="1080" alt="Screenshot (30)" src="https://github.com/user-attachments/assets/53e5030f-efb1-4641-aacf-9279a6566102" />
+
 
 ## OUTPUT - WEBPAGE:
 ![alt text](image.png)
