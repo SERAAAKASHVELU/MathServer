@@ -42,8 +42,9 @@ Render the result to the HTML template.
 Publish the website in Localhost.
 
 ## PROGRAM:
-views.py
 ```
+views.py
+
 from django.shortcuts import render
 
 def calculate_churn_rate(request):
@@ -73,9 +74,9 @@ def calculate_churn_rate(request):
             
     return render(request, "Myapp/math.html", context)
 
-```
+
 urls.py
-```
+
 from django.contrib import admin
 from django.urls import path
 from Myapp import views
@@ -85,7 +86,6 @@ urlpatterns=[
     path('',views.calculate_churn_rate,name="calculate_churn_rate")
 ]
 
-```
 math.html
 <html>
     <head>
@@ -106,9 +106,9 @@ math.html
         </form>
     </body>
 </html>
+```
 ## OUTPUT - SERVER SIDE:
-<img width="1920" height="1080" alt="Screenshot (30)" src="https://github.com/user-attachments/assets/53e5030f-efb1-4641-aacf-9279a6566102" />
-
+![alt text](image-1.png)
 
 ## OUTPUT - WEBPAGE:
 ![alt text](image.png)
